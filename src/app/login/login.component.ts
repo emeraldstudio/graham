@@ -1,61 +1,71 @@
 import { Component, OnInit } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
-
-/* ***********************************************************
-* Before you can navigate to this page from your app, you need to reference this page's module in the
-* global app router module. Add the following object to the global array of routes:
-* { path: "login", loadChildren: "./login/login.module#LoginModule" }
-* Note that this simply points the path to the page module file. If you move the page, you need to update the route too.
-*************************************************************/
+const firebase = require("nativescript-plugin-firebase");
+import { Feedback, FeedbackType, FeedbackPosition } from "nativescript-feedback";
+import { FirebaseTrace } from "nativescript-plugin-firebase/performance/performance";
+import {LoadingIndicator} from "nativescript-loading-indicator";
+import { alert, prompt } from "tns-core-modules/ui/dialogs";
+import { isIOS,isAndroid } from "tns-core-modules/platform";
+let loader = new LoadingIndicator();
 
 @Component({
-    selector: "Login",
     moduleId: module.id,
+    selector: "login-page",
     templateUrl: "./login.component.html"
 })
-export class LoginComponent implements OnInit {
-    email: string;
-    password: string;
+export class LoginComponent implements OnInit{
+	celular:string;
+    private feedback: Feedback;        
 
-    constructor(private routerExtensions: RouterExtensions,) {
-        /* ***********************************************************
-        * Use the constructor to inject app services that you need in this component.
-        *************************************************************/
-    }
+    constructor(private routerExtension: RouterExtensions) { 
+        this.feedback = new Feedback();
+    };
 
     ngOnInit(): void {
         /* ***********************************************************
         * Use the "ngOnInit" handler to initialize data for this component.
         *************************************************************/
-    }
-
-    onLoginWithSocialProviderButtonTap(): void {
-        /* ***********************************************************
-        * For log in with social provider you can add your custom logic or
-        * use NativeScript plugin for log in with Facebook
-        * http://market.nativescript.org/plugins/nativescript-facebook
-        *************************************************************/
-    }
-
-    onSigninButtonTap(): void {
-        const email = this.email;
-        const password = this.password;
-
-        /* ***********************************************************
-        * Call your custom sign in logic using the email and password data.
-        *************************************************************/
-    }
-
-    onForgotPasswordTap(): void {
-        /* ***********************************************************
-        * Call your Forgot Password logic here.
-        *************************************************************/
-    }
-    onNavItemTap(navItemRoute: string): void {
-        this.routerExtensions.navigate([navItemRoute], {
-            transition: {
-                name: "fade"
-            }
-        });
     }    
+
+    onNavigateWelcome() {
+        // Navigate to welcome page with clearHistory
+        this.routerExtension.navigate(["../welcome"], { clearHistory: true });
+    }
+
+    onSigninButtonTap(): void {	
+    	const model = this;
+    	const celular = this.celular;
+    	console.log(celular)
+
+        if (celular) {
+            // call firebase login         	
+
+    		firebase.login({
+    		    type: firebase.LoginType.PHONE,
+    		    phoneOptions: {
+    		      phoneNumber: '+57'+celular,
+    		      verificationPrompt: "The received verification code" // default "Verification code"
+    		    }
+    		}).then(
+    		      function (result) {
+    		        JSON.stringify(result);
+    		        console.log(result);
+                    model.routerExtension.navigate(['/tabs/default'])
+    		      },
+    		      function (errorMessage) {
+    		        console.log(errorMessage);
+    		      }
+    		);  
+        
+        }else{
+            model.feedback.warning({
+                message:'Introduce tu celular'
+            })
+        }              
+    }
+   
+    salir():void{
+        console.log('salio sesion')
+		firebase.logout();   
+	}
 }

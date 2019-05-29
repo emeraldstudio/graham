@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "744633306675-6vvqts1iqjd23d4h1c6i4oqtkuvdgi6i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.emeraldStudio.graham",
+            "certificate_hash": "8a9c6b50064e7d8843f41021cbf90bf73c5bd65a"
+          }
+        },
+        {
           "client_id": "744633306675-9cl13ke1darlfsgabs16i8j5k4ttttmg.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -30,6 +38,13 @@
             {
               "client_id": "744633306675-9cl13ke1darlfsgabs16i8j5k4ttttmg.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "744633306675-4q6gp9pvj3uv1791kisr6p6b78lkvcdr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.emeraldStudio.graham"
+              }
             }
           ]
         }

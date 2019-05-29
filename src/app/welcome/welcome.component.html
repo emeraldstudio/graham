@@ -1,0 +1,15 @@
+<ActionBar class="action-bar">
+    <Label class="action-bar-title" text="Welcome Component"></Label>
+</ActionBar>
+
+<GridLayout rows="auto, auto" class="bg_general p-15">
+	<StackLayout row="0" class="m-t-30 p-5">
+		<Image src="~/images/logo.png"></Image>		
+	</StackLayout>
+	<GridLayout row="1" rows="auto, auto, auto" class="m-t-20 p-5">
+	    <!-- <Button text="Go To Tabs Page" [nsRouterLink]="['/tabs/default']"></Button> -->
+	    <Label row="0" text="Bienvenido" textAlignment="center" (tap)="onLogout()" fontSize="20" fontWeight="bold"></Label>
+	    <Button row="1" text="Crear cuenta" [nsRouterLink]="['/registro']" fontSize="9" class="m-t-10 bgOrange"></Button>
+	    <Button row="2" text="Ya tengo cuenta" [nsRouterLink]="['/login']" fontSize="9" class="m-t-10 gradientBlue"></Button>
+	</GridLayout>
+</GridLayout>

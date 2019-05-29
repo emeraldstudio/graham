@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>744633306675-4q6gp9pvj3uv1791kisr6p6b78lkvcdr.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.744633306675-4q6gp9pvj3uv1791kisr6p6b78lkvcdr</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>744633306675-6vvqts1iqjd23d4h1c6i4oqtkuvdgi6i.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBNR5Hn4oDycE8-yx9vpPdGjexepFDnd3U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>744633306675</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.emeraldStudio.graham</string>
+	<key>PROJECT_ID</key>
+	<string>graham-dbfa2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>graham-dbfa2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:744633306675:ios:9a92bda93803547f</string>
+	<key>DATABASE_URL</key>
+	<string>https://graham-dbfa2.firebaseio.com</string>
+</dict>
+</plist>

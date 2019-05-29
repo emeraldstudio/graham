@@ -26,3 +26,29 @@
 ActionBar .action-bar-title {
     horizontal-align: center;
 }
+.bg_general{
+    background: #edf4ff;
+}
+.gradientBlue{
+    background: linear-gradient(to right, #7bc394, #4cbbb1, #2cb6c6);
+    color:#ffffff;
+    border-radius: 3;
+}
+.bgOrange{
+    background: linear-gradient(to right, #ea9b2a, #ea9b2a, #ea9b2a);
+    color:#ffffff;
+    border-radius: 3;
+}
+.iconBack{
+    vertical-align: bottom;;
+    horizontal-align:left;
+    width: 13;
+    margin-top: 35;
+    margin-left: 20;
+}
+.inputR{
+    background: #ffffff;
+    border-radius: 3;
+    padding: 10;
+    font-size: 13;
+}

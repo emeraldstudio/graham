@@ -4,13 +4,23 @@ var core_1 = require("@angular/core");
 var nativescript_module_1 = require("nativescript-angular/nativescript.module");
 var app_routing_module_1 = require("./app-routing.module");
 var app_component_1 = require("./app.component");
-// export class MyErrorHandler implements ErrorHandler {
-//     handleError(error) {
-//         console.log("### ErrorHandler Error: " + error.toString());
-//         console.log("### ErrorHandler Stack: " + error.stack);
-//     }
-// }
+var data_service_1 = require("./data.service");
+var trace_1 = require("tns-core-modules/trace");
+trace_1.enable();
+var MyErrorHandler = /** @class */ (function () {
+    function MyErrorHandler() {
+    }
+    MyErrorHandler.prototype.handleError = function (error) {
+        console.log("### ErrorHandler Error: " + error.toString());
+        console.log("### ErrorHandler Stack: " + error.stack);
+    };
+    return MyErrorHandler;
+}());
+exports.MyErrorHandler = MyErrorHandler;
 var AppModule = /** @class */ (function () {
+    /*
+    Pass your application module to the bootstrapModule function located in main.ts to start your app
+    */
     function AppModule() {
     }
     AppModule = __decorate([
@@ -23,18 +33,22 @@ var AppModule = /** @class */ (function () {
                 app_routing_module_1.AppRoutingModule,
             ],
             declarations: [
-                app_component_1.AppComponent,
+                app_component_1.AppComponent
+            ].concat(app_routing_module_1.COMPONENTS),
+            providers: [
+                data_service_1.DataService,
+                { provide: core_1.ErrorHandler, useClass: MyErrorHandler }
+                // { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader }
             ],
-            // providers: [
-            //     { provide: ErrorHandler, useClass: MyErrorHandler },
-            //     { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader }
-            // ],
             schemas: [
                 core_1.NO_ERRORS_SCHEMA
             ]
         })
+        /*
+        Pass your application module to the bootstrapModule function located in main.ts to start your app
+        */
     ], AppModule);
     return AppModule;
 }());
 exports.AppModule = AppModule;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLm1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFwcC5tb2R1bGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxzQ0FBMkQ7QUFDM0QsZ0ZBQThFO0FBRTlFLDJEQUF3RDtBQUN4RCxpREFBK0M7QUFJL0Msd0RBQXdEO0FBQ3hELDJCQUEyQjtBQUMzQixzRUFBc0U7QUFDdEUsaUVBQWlFO0FBQ2pFLFFBQVE7QUFDUixJQUFJO0FBc0JKO0lBQUE7SUFBeUIsQ0FBQztJQUFiLFNBQVM7UUFwQnJCLGVBQVEsQ0FBQztZQUNOLFNBQVMsRUFBRTtnQkFDUCw0QkFBWTthQUNmO1lBQ0QsT0FBTyxFQUFFO2dCQUNMLHdDQUFrQjtnQkFDbEIscUNBQWdCO2FBQ25CO1lBQ0QsWUFBWSxFQUFFO2dCQUNWLDRCQUFZO2FBRWY7WUFDRCxlQUFlO1lBQ2YsMkRBQTJEO1lBQzNELDBFQUEwRTtZQUMxRSxLQUFLO1lBQ0wsT0FBTyxFQUFFO2dCQUNMLHVCQUFnQjthQUNuQjtTQUNKLENBQUM7T0FDVyxTQUFTLENBQUk7SUFBRCxnQkFBQztDQUFBLEFBQTFCLElBQTBCO0FBQWIsOEJBQVMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBOZ01vZHVsZSwgTk9fRVJST1JTX1NDSEVNQSB9IGZyb20gXCJAYW5ndWxhci9jb3JlXCI7XG5pbXBvcnQgeyBOYXRpdmVTY3JpcHRNb2R1bGUgfSBmcm9tIFwibmF0aXZlc2NyaXB0LWFuZ3VsYXIvbmF0aXZlc2NyaXB0Lm1vZHVsZVwiO1xuXG5pbXBvcnQgeyBBcHBSb3V0aW5nTW9kdWxlIH0gZnJvbSBcIi4vYXBwLXJvdXRpbmcubW9kdWxlXCI7XG5pbXBvcnQgeyBBcHBDb21wb25lbnQgfSBmcm9tIFwiLi9hcHAuY29tcG9uZW50XCI7XG5cbmltcG9ydCB7IE5TTW9kdWxlRmFjdG9yeUxvYWRlciB9IGZyb20gXCJuYXRpdmVzY3JpcHQtYW5ndWxhci9yb3V0ZXJcIjtcblxuLy8gZXhwb3J0IGNsYXNzIE15RXJyb3JIYW5kbGVyIGltcGxlbWVudHMgRXJyb3JIYW5kbGVyIHtcbi8vICAgICBoYW5kbGVFcnJvcihlcnJvcikge1xuLy8gICAgICAgICBjb25zb2xlLmxvZyhcIiMjIyBFcnJvckhhbmRsZXIgRXJyb3I6IFwiICsgZXJyb3IudG9TdHJpbmcoKSk7XG4vLyAgICAgICAgIGNvbnNvbGUubG9nKFwiIyMjIEVycm9ySGFuZGxlciBTdGFjazogXCIgKyBlcnJvci5zdGFjayk7XG4vLyAgICAgfVxuLy8gfVxuXG5ATmdNb2R1bGUoe1xuICAgIGJvb3RzdHJhcDogW1xuICAgICAgICBBcHBDb21wb25lbnRcbiAgICBdLFxuICAgIGltcG9ydHM6IFtcbiAgICAgICAgTmF0aXZlU2NyaXB0TW9kdWxlLFxuICAgICAgICBBcHBSb3V0aW5nTW9kdWxlLFxuICAgIF0sXG4gICAgZGVjbGFyYXRpb25zOiBbXG4gICAgICAgIEFwcENvbXBvbmVudCxcbiAgICAgICAgLy8gLi4uQ09NUE9ORU5UU1xuICAgIF0sXG4gICAgLy8gcHJvdmlkZXJzOiBbXG4gICAgLy8gICAgIHsgcHJvdmlkZTogRXJyb3JIYW5kbGVyLCB1c2VDbGFzczogTXlFcnJvckhhbmRsZXIgfSxcbiAgICAvLyAgICAgeyBwcm92aWRlOiBOZ01vZHVsZUZhY3RvcnlMb2FkZXIsIHVzZUNsYXNzOiBOU01vZHVsZUZhY3RvcnlMb2FkZXIgfVxuICAgIC8vIF0sXG4gICAgc2NoZW1hczogW1xuICAgICAgICBOT19FUlJPUlNfU0NIRU1BXG4gICAgXVxufSlcbmV4cG9ydCBjbGFzcyBBcHBNb2R1bGUgeyB9XG4iXX0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLm1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFwcC5tb2R1bGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQSxzQ0FBZ0c7QUFDaEcsZ0ZBQThFO0FBQzlFLDJEQUFvRTtBQUNwRSxpREFBK0M7QUFFL0MsK0NBQTZDO0FBRzdDLGdEQUE4RTtBQUU5RSxjQUFXLEVBQUUsQ0FBQztBQUVkO0lBQUE7SUFLQSxDQUFDO0lBSkcsb0NBQVcsR0FBWCxVQUFZLEtBQUs7UUFDYixPQUFPLENBQUMsR0FBRyxDQUFDLDBCQUEwQixHQUFHLEtBQUssQ0FBQyxRQUFRLEVBQUUsQ0FBQyxDQUFDO1FBQzNELE9BQU8sQ0FBQyxHQUFHLENBQUMsMEJBQTBCLEdBQUcsS0FBSyxDQUFDLEtBQUssQ0FBQyxDQUFDO0lBQzFELENBQUM7SUFDTCxxQkFBQztBQUFELENBQUMsQUFMRCxJQUtDO0FBTFksd0NBQWM7QUErQjNCO0lBSEE7O01BRUU7SUFDRjtJQUF5QixDQUFDO0lBQWIsU0FBUztRQXhCckIsZUFBUSxDQUFDO1lBQ04sU0FBUyxFQUFFO2dCQUNQLDRCQUFZO2FBQ2Y7WUFDRCxPQUFPLEVBQUU7Z0JBQ0wsd0NBQWtCO2dCQUNsQixxQ0FBZ0I7YUFDbkI7WUFDRCxZQUFZO2dCQUNSLDRCQUFZO3FCQUNULCtCQUFVLENBQ2hCO1lBQ0QsU0FBUyxFQUFFO2dCQUNQLDBCQUFXO2dCQUNYLEVBQUUsT0FBTyxFQUFFLG1CQUFZLEVBQUUsUUFBUSxFQUFFLGNBQWMsRUFBRTtnQkFDbkQsc0VBQXNFO2FBQ3pFO1lBQ0QsT0FBTyxFQUFFO2dCQUNMLHVCQUFnQjthQUNuQjtTQUNKLENBQUM7UUFDRjs7VUFFRTtPQUNXLFNBQVMsQ0FBSTtJQUFELGdCQUFDO0NBQUEsQUFBMUIsSUFBMEI7QUFBYiw4QkFBUyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IE5nTW9kdWxlLCBOT19FUlJPUlNfU0NIRU1BLCBFcnJvckhhbmRsZXIsIE5nTW9kdWxlRmFjdG9yeUxvYWRlciB9IGZyb20gXCJAYW5ndWxhci9jb3JlXCI7XG5pbXBvcnQgeyBOYXRpdmVTY3JpcHRNb2R1bGUgfSBmcm9tIFwibmF0aXZlc2NyaXB0LWFuZ3VsYXIvbmF0aXZlc2NyaXB0Lm1vZHVsZVwiO1xuaW1wb3J0IHsgQXBwUm91dGluZ01vZHVsZSwgQ09NUE9ORU5UUyB9IGZyb20gXCIuL2FwcC1yb3V0aW5nLm1vZHVsZVwiO1xuaW1wb3J0IHsgQXBwQ29tcG9uZW50IH0gZnJvbSBcIi4vYXBwLmNvbXBvbmVudFwiO1xuXG5pbXBvcnQgeyBEYXRhU2VydmljZSB9IGZyb20gXCIuL2RhdGEuc2VydmljZVwiO1xuaW1wb3J0IHsgTlNNb2R1bGVGYWN0b3J5TG9hZGVyIH0gZnJvbSBcIm5hdGl2ZXNjcmlwdC1hbmd1bGFyL3JvdXRlclwiO1xuXG5pbXBvcnQgeyBlbmFibGUgYXMgdHJhY2VFbmFibGUsIGFkZENhdGVnb3JpZXMgfSBmcm9tIFwidG5zLWNvcmUtbW9kdWxlcy90cmFjZVwiO1xuXG50cmFjZUVuYWJsZSgpO1xuXG5leHBvcnQgY2xhc3MgTXlFcnJvckhhbmRsZXIgaW1wbGVtZW50cyBFcnJvckhhbmRsZXIge1xuICAgIGhhbmRsZUVycm9yKGVycm9yKSB7XG4gICAgICAgIGNvbnNvbGUubG9nKFwiIyMjIEVycm9ySGFuZGxlciBFcnJvcjogXCIgKyBlcnJvci50b1N0cmluZygpKTtcbiAgICAgICAgY29uc29sZS5sb2coXCIjIyMgRXJyb3JIYW5kbGVyIFN0YWNrOiBcIiArIGVycm9yLnN0YWNrKTtcbiAgICB9XG59XG5cbkBOZ01vZHVsZSh7XG4gICAgYm9vdHN0cmFwOiBbXG4gICAgICAgIEFwcENvbXBvbmVudFxuICAgIF0sXG4gICAgaW1wb3J0czogW1xuICAgICAgICBOYXRpdmVTY3JpcHRNb2R1bGUsXG4gICAgICAgIEFwcFJvdXRpbmdNb2R1bGUsXG4gICAgXSxcbiAgICBkZWNsYXJhdGlvbnM6IFtcbiAgICAgICAgQXBwQ29tcG9uZW50LFxuICAgICAgICAuLi5DT01QT05FTlRTXG4gICAgXSxcbiAgICBwcm92aWRlcnM6IFtcbiAgICAgICAgRGF0YVNlcnZpY2UsXG4gICAgICAgIHsgcHJvdmlkZTogRXJyb3JIYW5kbGVyLCB1c2VDbGFzczogTXlFcnJvckhhbmRsZXIgfVxuICAgICAgICAvLyB7IHByb3ZpZGU6IE5nTW9kdWxlRmFjdG9yeUxvYWRlciwgdXNlQ2xhc3M6IE5TTW9kdWxlRmFjdG9yeUxvYWRlciB9XG4gICAgXSxcbiAgICBzY2hlbWFzOiBbXG4gICAgICAgIE5PX0VSUk9SU19TQ0hFTUFcbiAgICBdXG59KVxuLypcblBhc3MgeW91ciBhcHBsaWNhdGlvbiBtb2R1bGUgdG8gdGhlIGJvb3RzdHJhcE1vZHVsZSBmdW5jdGlvbiBsb2NhdGVkIGluIG1haW4udHMgdG8gc3RhcnQgeW91ciBhcHBcbiovXG5leHBvcnQgY2xhc3MgQXBwTW9kdWxlIHsgfSJdfQ==

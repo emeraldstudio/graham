@@ -1,12 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
+const firebaseWebApi = require("nativescript-plugin-firebase/app");
+const firebase = require("nativescript-plugin-firebase/app");
+import { Feedback, FeedbackType, FeedbackPosition } from "nativescript-feedback";
+import {LoadingIndicator} from "nativescript-loading-indicator";
+import * as dialogs from "tns-core-modules/ui/dialogs";
+let loader = new LoadingIndicator();
 
-/* ***********************************************************
-* Before you can navigate to this page from your app, you need to reference this page's module in the
-* global app router module. Add the following object to the global array of routes:
-* { path: "registro", loadChildren: "./registro/registro.module#RegistroModule" }
-* Note that this simply points the path to the page module file. If you move the page, you need to update the route too.
-*************************************************************/
+import { AddEventListenerResult, User } from "nativescript-plugin-firebase";
 
 @Component({
     selector: "Registro",
@@ -14,14 +15,14 @@ import { RouterExtensions } from "nativescript-angular/router";
     templateUrl: "./registro.component.html"
 })
 export class RegistroComponent implements OnInit {
-    name: string;
-    email: string;
-    password: string;
+
+    nombre:string;
+    celular:string;
+    email:string;
+    private feedback: Feedback;
 
     constructor(private routerExtensions: RouterExtensions) {
-        /* ***********************************************************
-        * Use the constructor to inject app services that you need in this component.
-        *************************************************************/
+        this.feedback = new Feedback();
     }
 
     ngOnInit(): void {
@@ -30,28 +31,30 @@ export class RegistroComponent implements OnInit {
         *************************************************************/
     }
 
-    onSignupWithSocialProviderButtonTap(): void {
-        /* ***********************************************************
-        * For sign up with social provider you can add your custom logic or
-        * use NativeScript plugin for sign up with Facebook
-        * http://market.nativescript.org/plugins/nativescript-facebook
-        *************************************************************/
-    }
-
     onSignupButtonTap(): void {
-        const name = this.name;
-        const email = this.email;
-        const password = this.password;
+        const model = this;
+        model.email = "123@gmaiil.com"
+        console.log(model.nombre);
+        console.log(model.celular);
+            
+        if (model.nombre && model.celular) {
 
-        /* ***********************************************************
-        * Call your custom signup logic using the email and password data.
-        *************************************************************/
-    }
-    onNavItemTap(navItemRoute: string): void {
-        this.routerExtensions.navigate([navItemRoute], {
-            transition: {
-                name: "fade"
-            }
-        });
-    }   
+            firebaseWebApi.auth().createUserWithEmailAndPassword(model.nombre,model.email,model.nombre).then((user: User) => {
+               loader.hide();
+               console.log("User created: " + JSON.stringify(user));
+               console.log("User created: " + JSON.stringify(user.phoneNumber));
+               // model.crearDatosUsuario(name,celular,email,user.uid);
+            })
+            .catch(error =>{
+                console.log("Error creating user: " + error);
+                loader.hide();
+            });
+
+        }else{
+
+        }
+    }    
+    irAtras(): void {
+        this.routerExtensions.back();
+    }    
 }

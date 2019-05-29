@@ -35,6 +35,9 @@ if(settingsGradleFile.exists())
 dependencies {
   compile "com.google.android.gms:play-services-base:15.0.1" 
 }
+dependencies {
+  implementation 'com.google.firebase:firebase-auth:16.2.1'
+}
 project.ext {
        googlePlayServicesVersion = "15.0.1"
 }

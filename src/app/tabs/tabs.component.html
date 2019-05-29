@@ -1,18 +1,19 @@
 <TabView androidTabsPosition="bottom">
-
-    <page-router-outlet
-        *tabItem="{title: 'Home', iconSource: getIconSource('home')}"
-        name="homeTab">
+    <page-router-outlet *tabItem="{title: 'Chats'}" name="chatsTab" actionBarVisibility="never">
     </page-router-outlet>
 
-    <page-router-outlet
-        *tabItem="{title: 'Browse', iconSource: getIconSource('browse')}"
-        name="browseTab">
+    <page-router-outlet *tabItem="{title: 'Llamar'}" name="llamarTab" actionBarVisibility="never">
     </page-router-outlet>
 
-    <page-router-outlet
-        *tabItem="{title: 'Search', iconSource: getIconSource('search')}"
-        name="searchTab">
+    <page-router-outlet *tabItem="{title: 'Contacto'}" name="contactoTab" actionBarVisibility="never">
     </page-router-outlet>
 
+    <page-router-outlet *tabItem="{title: 'Configuración'}" name="configuracionTab" actionBarVisibility="never">
+    </page-router-outlet>
+
+<!--     <page-router-outlet *tabItem="{title: 'Players'}" name="playerTab" actionBarVisibility="never">
+    </page-router-outlet>
+
+    <page-router-outlet *tabItem="{title: 'Teams'}" name="teamTab" actionBarVisibility="never">
+    </page-router-outlet> -->
 </TabView>
