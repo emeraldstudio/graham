@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit{
 
     onNavigateWelcome() {
         // Navigate to welcome page with clearHistory
-        this.routerExtension.navigate(["../welcome"], { clearHistory: true });
+        this.routerExtension.navigate(["'/tabs/default'"], { clearHistory: true });
     }
 
     onSigninButtonTap(): void {	

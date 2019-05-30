@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 import { ActivatedRoute } from "@angular/router";
+import { isAndroid } from "tns-core-modules/platform";
 
 @Component({
     moduleId: module.id,
@@ -15,4 +16,9 @@ export class TabsComponent {
         // this.routerExtension.navigate([{ outlets: { playerTab: ["players"], teamTab: ["teams"], llamarTab: ["llamar"] } }], { relativeTo: this.activeRoute });
         this.routerExtension.navigate([{ outlets: { chatsTab: ["chats"], contactoTab: ["contacto"], llamarTab: ["llamar"], configuracionTab: ["configuracion"] } }], { relativeTo: this.activeRoute });
     }
+    getIconSource(icon: string): string {
+        const iconPrefix = isAndroid ? "res://" : "res://tabIcons/";
+
+        return iconPrefix + icon;
+    }    
 }

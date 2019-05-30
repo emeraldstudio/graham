@@ -40,8 +40,7 @@ ActionBar .action-bar-title {
     border-radius: 3;
 }
 .iconBack{
-    vertical-align: bottom;;
-    horizontal-align:left;
+    vertical-align: middle;
     width: 13;
     margin-top: 35;
     margin-left: 20;
@@ -51,4 +50,17 @@ ActionBar .action-bar-title {
     border-radius: 3;
     padding: 10;
     font-size: 13;
+}
+.gradientBlueTabs{
+    background: linear-gradient(to right, #7bc394, #4cbbb1, #2cb6c6);
+}
+.titleChats{
+    font-weight: bold;
+    text-align: center;
+    font-size: 25;
+    color:#ffffff;
+    margin-top: 15;
+}
+.overflow{
+    overflow: hidden;
 }

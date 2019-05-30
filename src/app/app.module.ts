@@ -10,12 +10,12 @@ import { enable as traceEnable, addCategories } from "tns-core-modules/trace";
 
 traceEnable();
 
-export class MyErrorHandler implements ErrorHandler {
-    handleError(error) {
-        console.log("### ErrorHandler Error: " + error.toString());
-        console.log("### ErrorHandler Stack: " + error.stack);
-    }
-}
+// export class MyErrorHandler implements ErrorHandler {
+//     handleError(error) {
+//         console.log("### ErrorHandler Error: " + error.toString());
+//         console.log("### ErrorHandler Stack: " + error.stack);
+//     }
+// }
 
 @NgModule({
     bootstrap: [
@@ -31,7 +31,7 @@ export class MyErrorHandler implements ErrorHandler {
     ],
     providers: [
         DataService,
-        { provide: ErrorHandler, useClass: MyErrorHandler }
+        // { provide: ErrorHandler, useClass: MyErrorHandler }
         // { provide: NgModuleFactoryLoader, useClass: NSModuleFactoryLoader }
     ],
     schemas: [

@@ -2,9 +2,21 @@
     <Label class="action-bar-title" text="Home"></Label>
 </ActionBar>
 
-
-
-<GridLayout class="page page-content">
-    <Label class="page-icon fa" text="&#xf1ea;"></Label>
-    <Label class="page-placeholder" text="<!-- Page content goes here chats -->"></Label>
+<GridLayout rows="auto,*" class="bg_general">
+    <GridLayout rows="auto,auto" width="100%" class="gradientBlueTabs p-20"> 
+    	<Label row="0" text="Chats" class="titleChats"></Label>
+        <StackLayout row="1" borderRadius="30" backgroundColor="white" width="95%" class="m-t-15"> 
+            <SearchBar hint="Buscar" [text]="searchPhrase" (clear)="onClear($event)" (textChange)="onTextChanged($event)" (submit)="onSubmit($event)" (loaded)="onSearchBarLoaded($event)" verticalAlignment="center" color="gray" textFieldBackgroundColor="white" textFieldHintColor="gray"></SearchBar>
+        </StackLayout> 
+    </GridLayout>		
+    <ListView width="95%" row="1" [items]="myItems" class="m-t-5" class="bg_general">
+        <ng-template class="m-t-5 bg_general" let-item="item" let-i="index" let-odd="odd" let-even="even">
+            <GridLayout class="bg_general m-t-10 p-15" columns="auto,*,auto" rows="auto,auto" (tap)="onNavItemTap(item.imagen,item.nombre)">
+                <Image col="0" row="0" width="50" height="50" borderRadius="100" borderWidth="2" borderColor="#cfd2d7" rowSpan="2" [src]="item.imagen"></Image>
+                <Label col="1" row="0" class="font-weight-bold p-l-15" color="#163f59" [text]="item.nombre"></Label>
+                <Label col="1" row="1" class="p-l-15" color="#cfd2d7" fontSize="10" textWrap="true" text="Lorem ipsum dolor sit amet, consectetu rconsectetur consectetur..."></Label>
+                <Label col="2" row="0" class="p-l-15" color="#cfd2d7" fontSize="10" [text]="item.fecha"></Label>
+            </GridLayout>
+        </ng-template>
+    </ListView>
 </GridLayout>
