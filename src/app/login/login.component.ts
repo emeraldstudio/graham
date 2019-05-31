@@ -47,12 +47,13 @@ export class LoginComponent implements OnInit{
     		      verificationPrompt: "The received verification code" // default "Verification code"
     		    }
     		}).then(
-    		      function (result) {
-    		        JSON.stringify(result);
-    		        console.log(result);
+    		      function (result) {    
+                    console.log('entro result');		        
+    		        console.log(JSON.stringify(result));
                     model.routerExtension.navigate(['/tabs/default'])
     		      },
     		      function (errorMessage) {
+                    console.log('entro error');
     		        console.log(errorMessage);
     		      }
     		);  
