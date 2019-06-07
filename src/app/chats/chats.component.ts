@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { SearchBar } from "tns-core-modules/ui/search-bar";
 import * as observableArray from "tns-core-modules/data/observable-array";
 import { RouterExtensions } from "nativescript-angular/router";
+var contacts = require("nativescript-contacts");
 
 let perfil = [
                 {imagen:"~/images/icon_user.png",nombre:'Adri',fecha:'10:00'}, 
@@ -95,5 +96,42 @@ export class ChatsComponent implements OnInit {
                 curve:"easeInOut"
             }
         });
+    }
+    abrirContactos(){
+        const model = this;
+        // model.routerExtensions.navigate(["contacto"],{
+        //     transition:{
+        //         name:"slideUp",
+        //         curve:"easeInOut"
+        //     }
+        // })
+        console.log('trayendo contactos');
+        contacts.getContact().then(function(args) {
+          /// Returns args:
+          /// args.data: Generic cross platform JSON object
+          /// args.reponse: "selected" or "cancelled" depending on wheter the user selected a contact.
+          
+          console.log('args');
+          console.log(args);
+          console.log('args.data');
+          console.log(args.data);
+         
+          if (args.response === "selected") {
+            var contact = args.data; //See data structure below
+         
+            // lets say you wanted to grab first name and last name
+            console.log(contact.name.given + " " + contact.name.family);
+         
+            //lets say you want to get the phone numbers
+            contact.phoneNumbers.forEach(function(phone) {
+              console.log(phone.value);
+            });
+         
+            //lets say you want to get the addresses
+            // contact.postalAddresses.forEach(function(address) {
+            //   console.log(address.location.street);
+            // });
+          }
+        });  
     }      
 }

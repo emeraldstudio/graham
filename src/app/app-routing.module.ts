@@ -9,7 +9,7 @@ import { WelcomeComponent } from "./welcome/welcome.component";
 export const COMPONENTS = [ WelcomeComponent];
 
 const routes: Routes = [
-    { path: "", redirectTo: "/welcome", pathMatch: "full" },
+    { path: "", redirectTo: "/tabs/default", pathMatch: "full" },
     {
         // path: "login", component: LoginComponent
         path: "login", 
@@ -31,6 +31,10 @@ const routes: Routes = [
     {
         path: "chat",
         loadChildren: "~/app/chat/chat.module#ChatModule"
+    },
+    {
+        path: "contacto",
+        loadChildren: "~/app/contacto/contacto.module#ContactoModule"
     },
 ];
 

@@ -3,11 +3,15 @@
 </ActionBar>
 
 <GridLayout rows="auto,*" class="bg_general">
-    <GridLayout rows="auto,auto" width="100%" class="gradientBlueTabs p-20"> 
+    <GridLayout rows="auto,auto,auto" width="100%" class="gradientBlueTabs p-20"> 
     	<Label row="0" text="Chats" class="titleChats"></Label>
         <StackLayout row="1" borderRadius="30" backgroundColor="white" width="95%" class="m-t-15"> 
             <SearchBar hint="Buscar" [text]="searchPhrase" (clear)="onClear($event)" (textChange)="onTextChanged($event)" (submit)="onSubmit($event)" (loaded)="onSearchBarLoaded($event)" verticalAlignment="center" color="gray" textFieldBackgroundColor="white" textFieldHintColor="gray"></SearchBar>
         </StackLayout> 
+        <GridLayout row="2" columns="*,*" class="m-t-8">
+            <Image col="0" class="m-r-15" width="25" height="25" horizontalAlignment="center" src="~/images/write.png" (tap)="abrirContactos();"></Image>
+            <Image col="1" class="m-l-15" width="25" height="25" horizontalAlignment="center" src="~/images/group.png"></Image>
+        </GridLayout>
     </GridLayout>		
     <ListView width="95%" row="1" [items]="myItems" class="m-t-5" class="bg_general">
         <ng-template class="m-t-5 bg_general" let-item="item" let-i="index" let-odd="odd" let-even="even">

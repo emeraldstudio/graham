@@ -17,18 +17,18 @@ import { TabsComponent } from "./tabs.component";
                         component: NSEmptyOutletComponent,
                         loadChildren: "~/app/chats/chats.module#ChatsModule"
                     },
-                    {
-                        path: "llamar",
-                        outlet: "llamarTab",
-                        component: NSEmptyOutletComponent,
-                        loadChildren: "~/app/llamar/llamar.module#LlamarModule"
-                    },
-                    {
-                        path: "contacto",
-                        outlet: "contactoTab",
-                        component: NSEmptyOutletComponent,
-                        loadChildren: "~/app/contacto/contacto.module#ContactoModule",
-                    },
+                    // {
+                    //     path: "llamar",
+                    //     outlet: "llamarTab",
+                    //     component: NSEmptyOutletComponent,
+                    //     loadChildren: "~/app/llamar/llamar.module#LlamarModule"
+                    // },
+                    // {
+                    //     path: "contacto",
+                    //     outlet: "contactoTab",
+                    //     component: NSEmptyOutletComponent,
+                    //     loadChildren: "~/app/contacto/contacto.module#ContactoModule",
+                    // },
                     {
                         path: "configuracion",
                         outlet: "configuracionTab",

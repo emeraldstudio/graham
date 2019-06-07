@@ -14,7 +14,7 @@ export class TabsComponent {
 
     ngOnInit() {
         // this.routerExtension.navigate([{ outlets: { playerTab: ["players"], teamTab: ["teams"], llamarTab: ["llamar"] } }], { relativeTo: this.activeRoute });
-        this.routerExtension.navigate([{ outlets: { chatsTab: ["chats"], contactoTab: ["contacto"], llamarTab: ["llamar"], configuracionTab: ["configuracion"] } }], { relativeTo: this.activeRoute });
+        this.routerExtension.navigate([{ outlets: { chatsTab: ["chats"], configuracionTab: ["configuracion"] } }], { relativeTo: this.activeRoute });
     }
     getIconSource(icon: string): string {
         const iconPrefix = isAndroid ? "res://" : "res://tabIcons/";
