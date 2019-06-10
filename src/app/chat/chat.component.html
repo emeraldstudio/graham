@@ -4,11 +4,11 @@
 
 <GridLayout rows="auto,*,auto" class="bg_general">
 	<StackLayout class="gradientBlue p-l-20">
-		<GridLayout rows="auto" columns="auto,auto,*,auto" class="m-t-20">
+		<GridLayout rows="auto" columns="auto,auto,*,auto" class="m-t-10 p-t-20 p-b-12">
 			<Image col="0" src="~/images/back.png" class="iconBack" (tap)="irAtras()"></Image>
-	        <Image col="1" [src]="imagen" width="50" height="50" borderRadius="100" borderWidth="2" borderColor="#cfd2d7" rowSpan="2"></Image>
-	        <Label col="2" class="p-l-15" color="#ffffff" fontSize="18" textWrap="true" [text]="nombre"></Label>
-			<Image col="3" src="res://tel" class="iconBack"></Image>
+	        <Image col="1" [src]="imagen" class="imgChat m-l-20"></Image>
+	        <Label col="2" class="p-l-15" color="#ffffff" fontSize="18" verticalAlignment="center" horizontalAlignment="left" textWrap="true" [text]="nombre"></Label>
+			<Image col="3" src="res://tel" class="iconCall"></Image>
 	    </GridLayout>		
 	</StackLayout>
 

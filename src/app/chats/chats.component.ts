@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { SearchBar } from "tns-core-modules/ui/search-bar";
 import * as observableArray from "tns-core-modules/data/observable-array";
 import { RouterExtensions } from "nativescript-angular/router";
+import { isAndroid, isIOS, device, screen } from "tns-core-modules/platform";
 var contacts = require("nativescript-contacts");
 
 let perfil = [
@@ -105,33 +106,41 @@ export class ChatsComponent implements OnInit {
         //         curve:"easeInOut"
         //     }
         // })
-        console.log('trayendo contactos');
-        contacts.getContact().then(function(args) {
-          /// Returns args:
-          /// args.data: Generic cross platform JSON object
-          /// args.reponse: "selected" or "cancelled" depending on wheter the user selected a contact.
+        const permissions = require('nativescript-permissions');
+        permissions.requestPermission(android.Manifest.permission.READ_CONTACTS, "I need these permissions because I'm cool")
+          .then( () => {
+             console.log("Woo Hoo, I have the power!");
+          })
+          .catch( () => {
+             console.log("Uh oh, no permissions - plan B time!");
+          });
+        // console.log('trayendo contactos');
+        // contacts.getContact().then(function(args) {
+        //   /// Returns args:
+        //   /// args.data: Generic cross platform JSON object
+        //   /// args.reponse: "selected" or "cancelled" depending on wheter the user selected a contact.
           
-          console.log('args');
-          console.log(args);
-          console.log('args.data');
-          console.log(args.data);
+        //   console.log('args');
+        //   console.log(args);
+        //   console.log('args.data');
+        //   console.log(args.data);
          
-          if (args.response === "selected") {
-            var contact = args.data; //See data structure below
+        //   if (args.response === "selected") {
+        //     var contact = args.data; //See data structure below
          
-            // lets say you wanted to grab first name and last name
-            console.log(contact.name.given + " " + contact.name.family);
+        //     // lets say you wanted to grab first name and last name
+        //     console.log(contact.name.given + " " + contact.name.family);
          
-            //lets say you want to get the phone numbers
-            contact.phoneNumbers.forEach(function(phone) {
-              console.log(phone.value);
-            });
+        //     //lets say you want to get the phone numbers
+        //     contact.phoneNumbers.forEach(function(phone) {
+        //       console.log(phone.value);
+        //     });
          
-            //lets say you want to get the addresses
-            // contact.postalAddresses.forEach(function(address) {
-            //   console.log(address.location.street);
-            // });
-          }
-        });  
+        //     //lets say you want to get the addresses
+        //     // contact.postalAddresses.forEach(function(address) {
+        //     //   console.log(address.location.street);
+        //     // });
+        //   }
+        // });  
     }      
 }

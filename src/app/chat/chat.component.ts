@@ -44,4 +44,7 @@ export class ChatComponent implements OnInit {
         * Use the "ngOnInit" handler to initialize data for this component.
         *************************************************************/
     }
+    irAtras(): void {
+        this.routerExtensions.back();
+    }   
 }
